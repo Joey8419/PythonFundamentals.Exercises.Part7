@@ -26,7 +26,11 @@ def print_language_options(lang_options: Dict[int, str]) -> None:
     Values are strings representing the name of a language
     :return: None
     """
-    pass  # remove pass statement and implement me
+    # Loop through each key value pair
+    for key, value in lang_options.items():
+        # Print language id (key) and name of language value
+        print(key, 'corresponds to', value)
+
 
 
 def language_input() -> int:
@@ -35,7 +39,25 @@ def language_input() -> int:
 
     :return: An integer representing the language choice made by the user
     """
-    pass  # remove pass statement and implement me
+    # Display available language options
+    print_language_options(lang_dict)
+    # Prompt user until valid choice is made
+    while True:
+        try:
+            # Have user input their preferred language of choice
+            lang_choice = int(input("Enter your preferred language: "))
+
+            # Check if input language choice is valid
+            if language_choice_is_valid(lang_dict, lang_choice):
+                # Return valid language choice and exit loop
+                return  lang_choice
+            else:
+                # Print an error message if choice is incorrect
+                print("Invalid. Please select a valid language")
+        except ValueError:
+            # Print error message for invalid input by user
+            print("Invalid input. Please enter a number")
+
 
 
 def language_choice_is_valid(lang_options: Dict[int, str], lang_choice: int) -> bool:
@@ -49,7 +71,9 @@ def language_choice_is_valid(lang_options: Dict[int, str], lang_choice: int) -> 
     :param lang_choice: An integer representing the value the user selected
     :return: A boolean representing the validity of the lang_choice
     """
-    pass  # remove pass statement and implement me
+    # Check if the users language choice (lang_choice) is valid in lang_options dictionary
+    # The expression "lang_choice in lang_options" returns true if lang_choice is a valid key, False if not
+    return lang_choice in lang_options
 
 
 def get_name_input(name_prompt_options: Dict[int, str], lang_choice: int) -> str:
@@ -62,7 +86,10 @@ def get_name_input(name_prompt_options: Dict[int, str], lang_choice: int) -> str
     :param lang_choice: The language the user has chosen
     :return:
     """
-    pass  # remove pass statement and implement me
+    # Use get() method to retrieve users input for chosen language
+    # If lang_choice is a valid key, return the corresponding prompt and the default prompt
+    return name_prompt_options.get(lang_choice, "Name prompt not available for chosen language")
+
 
 
 def name_input(name_prompt: str) -> str:
@@ -72,7 +99,10 @@ def name_input(name_prompt: str) -> str:
     :param name_prompt: A string in the user's chosen language that asks them for their name
     :return: The user's response when asked for their name
     """
-    pass  # remove pass statement and implement me
+    # Prompt user for input using the name prompt in their chosen language
+    # input function displays name prompt to the user and waits for response
+    # Users input is returned by the function
+    return input(name_prompt)
 
 
 def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> None:
@@ -85,7 +115,11 @@ def greet(name: str, greetings_options: Dict[int, str], lang_choice: int) -> Non
     :param lang_choice: The language the user has chosen.
     :return:
     """
-    pass  # remove pass statement and implement me
+    greeting = greetings_options.get(lang_choice, "No greeting for chosen language")
+
+    # Print greeting along with users name
+    print(f"{greeting}, {name}!")
+
 
 
 if __name__ == '__main__':
